@@ -4,7 +4,9 @@
 
 # Use bash for inline if-statements in arch_patch target
 SHELL:=bash
-OWNER:=jupyter
+# OWNER:=jupyter
+# This is for the fork that is tongfamily
+OWNER:=tongfamily
 ARCH:=$(shell uname -m)
 DIFF_RANGE?=master...HEAD
 
@@ -42,7 +44,7 @@ arch_patch/%: ## apply hardware architecture specific patches to the Dockerfile
 		patch -f ./$(notdir $@)/Dockerfile ./$(notdir $@)/Dockerfile.$(ARCH).patch; \
 	fi
 
-build/%: DARGS?=
+build/%: DARGS?=--build-arg BASE_ORGANIZATION=$(OWNER)
 build/%: ## build the latest image for a stack
 	docker build $(DARGS) --rm --force-rm -t $(OWNER)/$(notdir $@):latest ./$(notdir $@)
 
