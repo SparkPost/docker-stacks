@@ -47,9 +47,14 @@ arch_patch/%: ## apply hardware architecture specific patches to the Dockerfile
 build/%: DARGS?=--build-arg BASE_ORGANIZATION=$(OWNER)
 build/%: ## build the latest image for a stack
 	docker build $(DARGS) --rm --force-rm -t $(OWNER)/$(notdir $@):latest ./$(notdir $@)
+	docker tag $(OWNER)/$(notdir $@):latest $(OWNER)/$(notdir $@):$$(git rev-parse HEAD)
+
+push/%:
+	docker push $(OWNER)/$(notdir $@)
 
 build-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) ) ## build all stacks
 build-test-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) test/$(I) ) ## build and test all stacks
+push-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) test/$(I) push/$(I)) ## build, test and push all stacks
 
 dev/%: ARGS?=
 dev/%: DARGS?=
