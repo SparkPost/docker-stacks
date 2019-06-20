@@ -54,7 +54,7 @@ push/%:
 
 build-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) ) ## build all stacks
 build-test-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) test/$(I) ) ## build and test all stacks
-push-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) test/$(I) push/$(I)) ## build, test and push all stacks
+push-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) push/$(I)) ## build, test and push all stacks
 
 dev/%: ARGS?=
 dev/%: DARGS?=
