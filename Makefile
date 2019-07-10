@@ -5,8 +5,7 @@
 # Use bash for inline if-statements in arch_patch target
 SHELL:=bash
 # OWNER:=jupyter
-# This is for the fork that is tongfamily
-OWNER:=tongfamily
+OWNER:=danielchalef
 ARCH:=$(shell uname -m)
 DIFF_RANGE?=master...HEAD
 
