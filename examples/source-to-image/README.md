@@ -141,7 +141,7 @@ oc new-app --template jupyter-notebook-quickstart \
   --param APPLICATION_NAME=notebook-examples \
   --param GIT_REPOSITORY_URL=https://github.com/jupyter/notebook \
   --param CONTEXT_DIR=docs/source/examples/Notebook \
-  --param BUILDER_IMAGE=jupyter/minimal-notebook:latest \
+  --param BUILDER_IMAGE=sparkpost/minimal-notebook:latest \
   --param NOTEBOOK_PASSWORD=mypassword
 ```
 

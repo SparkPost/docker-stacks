@@ -48,7 +48,7 @@ The output will be similar to:
 
      * With parameters:
         * APPLICATION_NAME=notebook
-        * NOTEBOOK_IMAGE=jupyter/minimal-notebook:latest
+        * NOTEBOOK_IMAGE=sparkpost/minimal-notebook:latest
         * NOTEBOOK_PASSWORD=ded4d7cada554aa48e0db612e1ed1080 # generated
 
 --> Creating resources ...
@@ -98,7 +98,7 @@ To override the name for the notebook, the image used, and the password, you can
 ```
 oc new-app --template jupyter-notebook \
   --param APPLICATION_NAME=mynotebook \
-  --param NOTEBOOK_IMAGE=jupyter/scipy-notebook:latest \
+  --param NOTEBOOK_IMAGE=sparkpost/scipy-notebook:latest \
   --param NOTEBOOK_PASSWORD=mypassword
 ```
 

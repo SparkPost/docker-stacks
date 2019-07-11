@@ -127,7 +127,7 @@ Most containers, including our Ubuntu base image, ship without manpages installe
 
 ```dockerfile
 # Choose your desired base image
-ARG BASE_CONTAINER=jupyter/datascience-notebook:latest
+ARG BASE_CONTAINER=sparkpost/datascience-notebook:latest
 FROM $BASE_CONTAINER
 
 USER root
