@@ -5,7 +5,7 @@
 # Use bash for inline if-statements in arch_patch target
 SHELL:=bash
 # OWNER:=jupyter
-OWNER:=danielchalef
+OWNER:=sparkpost
 ARCH:=$(shell uname -m)
 DIFF_RANGE?=master...HEAD
 

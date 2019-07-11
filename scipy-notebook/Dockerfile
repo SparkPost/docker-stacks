@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_ORGANIZATION=jupyter
+ARG BASE_ORGANIZATION=sparkpost
 ARG BASE_CONTAINER=$BASE_ORGANIZATION/minimal-notebook
 FROM $BASE_CONTAINER
 
