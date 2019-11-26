@@ -16,43 +16,42 @@ RUN apt-get update && \
 USER $NB_UID
 
 # Install Python 3 packages
-# Remove pyqt and qt pulled in for matplotlib since we're only ever going to
-# use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
+    'beautifulsoup4=4.8.*' \
     'conda-forge::blas=*=openblas' \
-    'ipywidgets=7.4*' \
-    'pandas=0.24*' \
-    'numexpr=2.6*' \
-    'matplotlib=3.0*' \
-    'scipy=1.2*' \
-    'seaborn=0.9*' \
-    'scikit-learn=0.20*' \
-    'scikit-image=0.14*' \
-    'sympy=1.3*' \
+    'bokeh=1.3*' \
+    'cloudpickle=1.2*' \
     'cython=0.29*' \
-    'patsy=0.5*' \
-    'statsmodels=0.9*' \
-    'cloudpickle=0.8*' \
-    'dill=0.2*' \
-    'dask=1.1.*' \
-    'numba=0.42*' \
-    'bokeh=1.0*' \
-    'sqlalchemy=1.3*' \
-    'hdf5=1.10*' \
+    'dask=2.2.*' \
+    'dill=0.3*' \
     'h5py=2.9*' \
+    'hdf5=1.10*' \
+    'ipywidgets=7.5*' \
+    'matplotlib-base=3.1.*' \
+    'numba=0.45*' \
+    'numexpr=2.6*' \
+    'pandas=0.25*' \
+    'patsy=0.5*' \
+    'protobuf=3.9.*' \
+    'scikit-image=0.15*' \
+    'scikit-learn=0.21*' \
+    'scipy=1.3*' \
+    'seaborn=0.9*' \
+    'sqlalchemy=1.3*' \
+    'statsmodels=0.10*' \
+    'sympy=1.4*' \
     'vincent=0.4.*' \
-    'beautifulsoup4=4.7.*' \
-    'protobuf=3.7.*' \
-    'xlrd'  && \
-    conda remove --quiet --yes --force qt pyqt && \
+    'xlrd' \
+    && \
     conda clean --all -f -y && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
     # Also activate ipywidgets extension for JupyterLab
     # Check this URL for most recent compatibilities
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
-    # jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 && \
-    jupyter labextension install jupyterlab_bokeh@1.0.0 && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^1.0.1 --no-build && \
+    jupyter labextension install jupyterlab_bokeh@1.0.0 --no-build && \
+    jupyter lab build && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
     rm -rf /home/$NB_USER/.cache/yarn && \
