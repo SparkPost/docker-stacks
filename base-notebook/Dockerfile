@@ -70,19 +70,12 @@ RUN mkdir /home/$NB_USER/work && \
 
 # Install conda as jovyan and check the md5 sum provided on the download site
 ENV MINICONDA_VERSION=4.7.10 \
-<<<<<<< HEAD
-=======
     MINICONDA_MD5=1c945f2b3335c7b2b15130b1b2dc5cf4 \
->>>>>>> ad3574d3c5c7de4d81401070cff8e2f1a8e6bc89
     CONDA_VERSION=4.7.12
 
 RUN cd /tmp && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
-<<<<<<< HEAD
-    echo "8a324adcc9eaf1c09e22a992bb6234d91a94146840ee6b11c114ecadafc68121 *Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh" | sha256sum -c - && \
-=======
     echo "${MINICONDA_MD5} *Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
->>>>>>> ad3574d3c5c7de4d81401070cff8e2f1a8e6bc89
     /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
     rm Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
     echo "conda ${CONDA_VERSION}" >> $CONDA_DIR/conda-meta/pinned && \
@@ -111,15 +104,9 @@ RUN conda install --quiet --yes 'tini=0.18.0' && \
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
 RUN conda install --quiet --yes \
-<<<<<<< HEAD
     'notebook=6.0.1' \
     'jupyterhub=1.0.0' \
-    'jupyterlab=1.1.4' && \
-=======
-    'notebook=6.0.0' \
-    'jupyterhub=1.0.0' \
     'jupyterlab=1.2.1' && \
->>>>>>> ad3574d3c5c7de4d81401070cff8e2f1a8e6bc89
     conda clean --all -f -y && \
     npm cache clean --force && \
     jupyter notebook --generate-config && \
